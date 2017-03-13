@@ -1,0 +1,11 @@
+.btn-allow{
+	background-image: url("../images/allow-btn.png");
+	background-repeat: no-repeat;
+	padding: 8px;
+}
+
+.btn-deny{
+	background-image: url("../images/deny-btn.png");
+	background-repeat: no-repeat;
+	padding: 8px;
+}

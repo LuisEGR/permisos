@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="logsApp"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Administrador de permisos</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery.toast.min.css">
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script src="js/controller.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/ng-notify.min.js"></script>
+    <script type="text/javascript" src="js/jquery.toast.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/permisos.angular.js"></script>
+    <link rel="stylesheet" href="css/ng-notify.min.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="css/permisos.min.css" media="screen" charset="utf-8">
+  </head>
+  <body ng-controller="LogsController">
+    <div class="contenedor-perm sh1">
+      <div class="head">
+        Logs de Administrador de Permisos </span>
+      </div>
+      
+      <span class="titulo_permiso ng-binding"></span>
+      <!-- <h3 style="text-align:center; color:rgba(0,0,0,0.3)">{{actual.permiso_key}}</h3> -->
+      <div class="w-50" style='width: 100%;height: 630px;'>
+        <h3 class="subt">Logs</h3>
+        
+		<input type="text" class="input-search" ng-change="load(1)" ng-model="nameSearch" placeholder="Buscar..." ng-model-options='{ debounce: 300 }'/>
+		
+        <div class="limit-container" >
+          <table class="usuarios material-table">
+            <thead>
+              <tr>
+                <th style="width:30px">                  
+                </th>
+                <th>ID</th>
+                <th>Permiso</th>
+                <th>Usuario</th>
+				<th>Acci&oacute;n</th>
+				<th>Usuario modificado</th>
+				<th>Tiempo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat= "l in logsData.registros" >
+                <td style="width:30px"></td>
+                <td>{{l.id_log}}</td>
+                <td style='text-align: left;padding-left: 10px;'> {{l.permiso}} - {{l.permiso_id}}</td>
+                <td style='text-align: left;padding-left: 10px;'>{{l.user}} - {{l.user_id}}</td>
+				<td>{{l.action}}</td>
+				<td style='text-align: left;padding-left: 10px;'>{{l.username_modified}} - {{l.user_modified}}</td>
+				<td>{{l.time}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+		<style>
+			.btn_paginador{
+				width: auto;
+				padding: 14px;
+				border-width: 1px;
+				border-style: solid;
+				border-color: #bdbdbd;
+			}
+
+			.paginador{	
+				position: relative;
+				height: 64px;
+				text-align: center;
+				top: 75px;
+				float: right;
+				right: 18px;
+			}
+
+			.paginas td:hover{ 
+				//border:#4e95f4 1px solid;
+				background-color: #bdbdbd;
+				color: white;
+				cursor: pointer;
+			}
+			
+			.disabled{
+				display:none;
+			}
+			
+			.activePage{
+				background-color: #bdbdbd;
+				color: white;
+				cursor: default;
+			}
+		</style>
+
+	  <div class="paginador">        
+        <div ng-include="'views/paginacion.html'"></div>		
+      </div>	
+	  
+    </div>
+	
+  </body>
+</html>
