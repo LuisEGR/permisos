@@ -19,7 +19,7 @@ include '../../conf.php'
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="<?php echo $url_server; ?>/lib/ie10-viewport-bug-workaround.css" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
 
 
@@ -32,24 +32,24 @@ include '../../conf.php'
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
+
 	<script type="text/javascript" src="<?php echo $url_server; ?>/lib/angular-1.5.8/angular.min.js"></script>
 	<script type="text/javascript" src="../../js/add_permiso.js"></script>
-	
+
   </head>
 
   <body ng-controller='AddPuestoCntroller'>
 
     <div class="container-fluid">
       <div class="row">
-	  
-		
+
+
 		<div >
-			<?php include_once "../../views/permisos/add.php"; ?>
-		
+			<?php include_once "views/permisos/add.php"; ?>
+
 		</div>
-		
-        		
+
+
 
 
         </div>
@@ -64,7 +64,7 @@ include '../../conf.php'
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
 <script>
     $('.datepick').datepicker({
-	
+
 	        format: "yyyy-mm-dd",
         autoclose: true,
         todayHighlight: true
