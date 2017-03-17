@@ -3,8 +3,209 @@
   <head>
     <meta charset="utf-8">
     <title>Administración de Permisos</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="/lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="/lib/SimpleGrid/simplegrid.css">
+    <link rel="stylesheet" href="../css/permisos.min.css">
+
+    <script type="text/javascript" src="/lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/lib/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="/lib/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="/lib/angular-material/angular-material.min.js"></script>
+    <script type="text/javascript" src="/lib/angular-material-icons/angular-material-icons.min.js"></script>
+    <script type="text/javascript" src="/lib/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="/lib/util-directives/util-directives.js"></script>
+
+    <script type="text/javascript" src="../js/permisos.app.js"></script>
+    <script type="text/javascript" src="../js/permisos.controller.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.rotate').css('height', $('.rotate').width());
+      });
+    </script>
   </head>
-  <body>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  <body ng-app="permisos" ng-controller="permisosController as ctrl" ng-mouseup="detenerDesplazamiento()">
+    <div class="master-container">
+      <div class="usuarios-cont">
+        <i class="fa fa-caret-left flecha" aria-hidden="true" id="desplazador_usuarios_izquierda" ng-mousedown="desplazar(0)" ></i>
+        <i class="fa fa-caret-right flecha" aria-hidden="true" id="desplazador_usuarios_derecha"  ng-mousedown="desplazar(1)"></i>
+        <div id="usuarios-scroll">
+          <div id="usuarios-cont-movible" style="width:1000px">
+            <div id="h-grupo" >
+              <span style="width: calc(10 * 28px)">NOC</span>
+              <span style="width: calc(5 * 28px)">Pacs Admin</span>
+            </div>
+            <div id="h-subgrupo">
+              <span style="width: calc(5 * 28px)">Admin</span>
+              <span style="width: calc(2 * 28px)">Imagen</span>
+              <span style="width: calc(4 * 28px)">Redes</span>
+              <span style="width: calc(3 * 28px)">MICH</span>
+            </div>
+            <table class="tabla-fixed-users">
+              <tbody>
+                <tr><td><div>15</div></td><td>10</td></tr>
+                <tr><td></td><td></td></tr>
+                <tr><td></td><td></td></tr>
+                <tr><td></td><td></td></tr>
+                <tr><td></td><td></td></tr>
+                <tr><td></td><td></td></tr>
+                <tr><td></td><td></td></tr>
+                <tr><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+      <div class="permisos-full-fix">
+        <div class="c1">Grupo</div>
+        <div class="c2">Página</div>
+        <div class="c3">Item</div>
+        <div class="c4">Descripción</div>
+        <div class="c5"></div>
+        <div class="c6">Total<br>Usuarios</div>
+      </div>
+      <div class="permisos-full-scroll">
+        <div class="permisos-cont">
+          <div id="permisos_labels">
+            <table class="tabla-fixed-labels">
+              <tbody>
+                <tr>
+                  <td class="rotate"><div>Productividad</div></td>
+                  <td class="npad">
+                    <table class="tabla-fixed-labels">
+                      <tbody>
+                    		<tr>
+                    		  <td rowspan="4">12312</td>
+                    		</tr>
+                        <tr>
+                          <td><div>asdasd</div><i class="fa fa-info-circle" aria-hidden="true"></i></td>
+                        </tr>
+                        <tr>
+                          <td><div>asdasd</div><i class="fa fa-info-circle" aria-hidden="true"></i></td>
+                        </tr>
+                        <tr>
+                          <td><div>asdasd</div></td>
+                        </tr>
+                    	</tbody>
+                      <tbody>
+                        <tr>
+                          <td rowspan="4">123123</td>
+                        </tr>
+                        <tr>
+                          <td>asdasd</td>
+                        </tr>
+                        <tr>
+                          <td>asdasd</td>
+                        </tr>
+                        <tr>
+                          <td>asdasd</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="asignacion-permisos">
+          <div id="permisos_asignados">
+            <table class="tabla-fixed-access">
+              <tbody>
+                <tr>
+                  <td class="has"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="has"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="totals-cont">
+          <div id="permisos_total">
+            <table class="tabla-fixed-totals">
+              <tbody>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
