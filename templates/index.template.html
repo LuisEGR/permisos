@@ -99,8 +99,8 @@
           <div id="permisos_asignados">
             <table class="tabla-fixed-access">
               <tbody>
-                <tr ng-repeat="p in permisos.ids">
-                  <td>{{p}}</td>
+                <tr ng-repeat="i in permisos.ids track by $index">
+                  <td>{{i}}</td>
                 </tr>
                 <tr>
                   <td class="has"></td>
