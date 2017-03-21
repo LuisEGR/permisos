@@ -1,4 +1,4 @@
-permisos.controller("permisosController",  ['$scope','$rootScope','$http','$interval', '$mdDialog','$timeout','$filter', function($scope,$rootScope, $http, $interval,$mdDialog,$timeout,$filter){
+permisos.controller("permisosController",  ['$scope','$rootScope','$http','$interval', '$mdDialog','$timeout','$filter', 'APIPermisos', function($scope,$rootScope, $http, $interval,$mdDialog,$timeout,$filter, APIPermisos){
   console.log("hey!");
   $scope.asd  = "asdasdasd";
   $scope.intervalDisplacement;
@@ -43,7 +43,7 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   $(document).on('mouseleave', "#permisos_asignados td", function(ev){
     $(this).parent().css({'background-color': 'rgba(0,0,0,0)'});
     $("#totalp1").css({'background-color': 'rgba(0,0,0,0.1)'});
-    
+
   });
 
 
@@ -55,6 +55,14 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
     });
   }());
 
+
+  APIPermisos.getUsers().then(function(d){
+    console.log("Users?: ", d);
+  });
+
+  APIPermisos.getAccesos().then(function(d){
+    console.log("accesos?: ", d);
+  });
 
 
 }]);
