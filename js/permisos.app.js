@@ -1,7 +1,16 @@
 var permisos = angular.module('permisos', ['ngMaterial','ngSanitize', 'utilDirectives']);
 permisos.service("APIPermisos", [ '$q','$http',function($q, $http){
   var self = this;
-  this.API_URL = "/dev/sistema/permisos/api"
+  this.API_URL = "/dev/sistema/permisos/api";
+
+  this.getPermisos = function(){
+    return $q(function(resolve, reject){
+        $http.get(self.API_URL + "/getPermisos.php").then(function(res){
+          resolve(res.data.result);
+        });
+    });
+  }
+
   this.getUsers = function(){
     return $q(function(resolve, reject){
         $http.get(self.API_URL + "/getUsers.php").then(function(res){

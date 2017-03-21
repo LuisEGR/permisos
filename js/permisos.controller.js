@@ -62,6 +62,12 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
     $scope.users = d;
   });
 
+  $scope.permisos = [];
+  APIPermisos.getPermisos().then(function(d){
+    console.log("Permisos: ", d);
+    $scope.permisos = d;
+  })
+
   APIPermisos.getAccesos().then(function(d){
     console.log("accesos?: ", d);
   });
