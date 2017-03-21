@@ -3,6 +3,9 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   // $scope.asd  = "asdasdasd";
   $scope.intervalDisplacement;
   $scope.posicionActual = 0;
+
+  $scope.colorsGoups = ["#03a9f4", "#009688", "#00bcd4", "#607d8b", "#3f51b5"];
+
   $scope.desplazar = function(dir){
     var $users = $("#usuarios-cont-movible");
     var $asignaciones = $("#permisos_asignados");

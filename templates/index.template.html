@@ -82,7 +82,7 @@
                     <table class="tabla-fixed-labels">
                       <tbody ng-repeat="pag in p.paginas">
                     		<tr>
-                    		  <td rowspan="4">{{pag.pagina}}</td>
+                    		  <td rowspan="{{pag.permisos.length + 1}}">{{pag.pagina}}</td>
                     		</tr>
                         <tr ng-repeat="perm in pag.permisos">
                           <td><div>{{perm.permiso_detalles}}</div><i class="fa fa-info-circle" aria-hidden="true"></i></td>
