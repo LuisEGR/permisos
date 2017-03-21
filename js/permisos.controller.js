@@ -29,8 +29,32 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
       }, 100);
     }
   }
+
+
   $scope.detenerDesplazamiento = function(){
     $interval.cancel(  $scope.intervalDisplacement);
   }
+
+  $(document).on('mouseover', "#permisos_asignados td", function(ev){
+    $(this).parent().css({'background-color': 'rgba(0,0,0,0.1)'});
+    $("#totalp1").css({'background-color': 'rgba(0,0,0,0.1)'});
+  });
+
+  $(document).on('mouseleave', "#permisos_asignados td", function(ev){
+    $(this).parent().css({'background-color': 'rgba(0,0,0,0)'});
+    $("#totalp1").css({'background-color': 'rgba(0,0,0,0.1)'});
+    
+  });
+
+
+  (function initSelecter(){
+    console.log($("#permisos_asignados td"));
+    $("#permisos_asignados td").each(function(el){
+      $(this).addEventLis
+      console.log($(this));
+    });
+  }());
+
+
 
 }]);
