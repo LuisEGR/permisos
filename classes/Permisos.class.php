@@ -300,14 +300,60 @@ class Permisos
 
 
   public static function getAllAccess(){
-    DBO::select_db('sistemas');
-    $q = "SELECT p.user_id, p.permiso_id, c.id_pagina, c.id_grupo FROM permisos_user p, permisos_cat c
-    WHERE
-    p.permiso_id = c.permiso_id AND
-    p.allow = 1
-    ORDER BY id_pagina, id_grupo ASC";
-    return DBO::getArray($q);
-  }
+      DBO::select_db('sistemas');
+      $q = "SELECT p.user_id as uid, p.permiso_id as pid FROM permisos_user p
+      WHERE
+      p.allow = 1";
+      $all = DBO::getArray($q);
+      foreach ($all as $key => $el) {
+        $csv .= $el['uid'].",".$el['pid']."|";
+      }
+      return $csv;
+    }
+
+    private static $grupos = array();
+    public static function loadGroups(){
+      $q = "SELECT id_grupo, grupo FROM permisos_grupo";
+      DBO::select_db('sistemas');
+      self::$grupos = DBO::getArray($q);
+    }
+
+    private static $paginas = array();
+    public static function loadPaginas(){
+      $q = "SELECT id_pagina, pagina FROM permisos_pagina";
+      DBO::select_db('sistemas');
+      self::$paginas = DBO::getArray($q);
+    }
+
+    public static function getGrupo($idg){
+        foreach (self::$grupos as $key => $grupo) {
+          if($grupo['id_grupo'] == $idg){
+            return $grupo['grupo'];
+          }
+        }
+        return false;
+    }
+
+    public static function getPagina($idp){
+        foreach (self::$paginas as $key => $pagina) {
+          if($pagina['id_grupo'] == $idp){
+            return $pagina['grupo'];
+          }
+        }
+        return false;
+    }
+
+
+    public static function getPermisosV2(){
+      DBO::select_db('sistemas');
+      $q = "SELECT permiso_id, id_pagina, id_grupo, permiso_key, permiso_detalles FROM permisos_cat";
+      $permisos = DBO::getArray($q);
+      foreach ($permisos as $key => $permiso) {
+        $permisos[$key]['grupo'] = self::getGrupo($permiso['id_grupo']);
+        $permisos[$key]['pagina'] = self::getGrupo($permiso['id_pagina']);
+      }
+      return $permisos;
+    }
 
 
 
