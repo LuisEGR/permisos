@@ -287,7 +287,8 @@ class Permisos
 
   public static function getAccesos(){
     DBO::select_db('directorio');
-    $usuarios = DBO::getArray('SELECT user_id, CONCAT(u.nombre," ", u.apaterno) as usuario_name FROM directorio.miembros u WHERE active = 1 AND user_id IS NOT NULL ORDER BY user_id');
+    $usuarios = DBO::getArray('SELECT user_id, CONCAT(u.nombre," ", u.apaterno) as usuario_name FROM directorio.miembros u WHERE active = 1 AND
+     user_id IS NOT NULL ORDER BY user_id');
     foreach ($usuarios as $key => $usuario) {
       $usuarios[$key]['total_permisos'] = self::contarPermisosUsuario($usuario['user_id']);
       $puesto = Usuarios::getGruposPuesto($usuario['user_id']);
@@ -300,7 +301,11 @@ class Permisos
 
   public static function getAllAccess(){
     DBO::select_db('sistemas');
-    $q = "SELECT p.user_id, p.permiso_id, p.allow, c.id_pagina, c.id_grupo FROM permisos_user p, permisos_cat c WHERE p.permiso_id = c.permiso_id ORDER BY id_pagina, id_grupo ASC";
+    $q = "SELECT p.user_id, p.permiso_id, c.id_pagina, c.id_grupo FROM permisos_user p, permisos_cat c
+    WHERE
+    p.permiso_id = c.permiso_id AND
+    p.allow = 1
+    ORDER BY id_pagina, id_grupo ASC";
     return DBO::getArray($q);
   }
 
