@@ -19,11 +19,29 @@ public function add( $datos ){
 	$a = DBO::insert($sql);
 }
 
-/*public function updateDetalle( $datos ){
-	$sql = "UPDATE permisos_cat SET permiso_detalles = '".html_entity_decode($datos['permiso_detalles'])."' WHERE permiso_id = '".$datos['permiso_id']."';";
+public function listCatGrupos( $datos ){
+
+$n = isset( $datos['n'] ) ? $datos['n'] : '';
+if( isset( $datos['n'] ) )
+		$n = $datos['n'] == 'undefined'  ? '' : $datos['n'];
+
+   $sql = "SELECT * FROM permisos_grupo WHERE grupo LIKE '%".$n."%'";
+  $db = 'sistemas';
+  $page = isset( $datos['page'] ) ? $datos['page'] : 1;
+  
+  return Response::$data->result = Paginacion::getPaginacion( $sql, $db, $page, 3, 100 );
+  
+  
+}
+
+
+public function updateGrupo( $datos ){
+	$sql = "UPDATE permisos_grupo SET grupo = '".html_entity_decode($datos['grupo'])."' WHERE id_grupo = '".$datos['id_grupo']."';";
 	DBO::select_db($this->db);
 	$a = DBO::doUpdate($sql);
 }
+
+/*
 
 public function updateKey( $datos ){
 	$sql = "UPDATE permisos_cat SET permiso_key = '".html_entity_decode($datos['permiso_key'])."' WHERE permiso_id = '".$datos['permiso_id']."';";
