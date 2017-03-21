@@ -75,7 +75,7 @@
         <div class="permisos-cont">
           <div id="permisos_labels">
             <table class="tabla-fixed-labels">
-              <tbody ng-repeat="p in permisos">
+              <tbody ng-repeat="p in permisos.grupos">
                 <tr>
                   <td class="rotate" style="background: {{colorsGoups[$index]}}"><div>{{p.grupo}}</div></td>
                   <td class="npad">
@@ -99,9 +99,11 @@
           <div id="permisos_asignados">
             <table class="tabla-fixed-access">
               <tbody>
+                <tr ng-repeat="p in permisos.ids">
+                  <td>{{p}}</td>
+                </tr>
                 <tr>
                   <td class="has"></td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -198,13 +200,12 @@
                 <tr id="totalp4"><td></td></tr>
                 <tr id="totalp5"><td></td></tr>
                 <tr id="totalp6"><td></td></tr>
-
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-    
+
   </body>
 </html>
