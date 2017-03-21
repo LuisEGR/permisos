@@ -85,7 +85,7 @@
                     		  <td rowspan="{{pag.permisos.length + 1}}">{{pag.pagina}}</td>
                     		</tr>
                         <tr ng-repeat="perm in pag.permisos">
-                          <td><div>{{perm.permiso_detalles}}</div><i class="fa fa-info-circle" aria-hidden="true"></i></td>
+                          <td title="{{perm.permiso_detalles}}"><div>{{perm.permiso_detalles | limitTo: 10}}</div><i class="fa fa-info-circle" aria-hidden="true"></i></td>
                         </tr>
                     	</tbody>
                     </table>
