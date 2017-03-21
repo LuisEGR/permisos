@@ -77,41 +77,22 @@
             <table class="tabla-fixed-labels">
               <tbody ng-repeat="p in permisos">
                 <tr>
-                  <td class="rotate"><div>GrupoName</div></td>
+                  <td class="rotate"><div>{{p.grupo}}</div></td>
                   <td class="npad">
                     <table class="tabla-fixed-labels">
-                      <tbody>
+                      <tbody ng-repeat="pag in p.paginas">
                     		<tr>
-                    		  <td rowspan="4">PaginaNAME</td>
+                    		  <td rowspan="4">{{pag.pagina}}</td>
                     		</tr>
-                        <tr>
-                          <td><div>asdasd</div><i class="fa fa-info-circle" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                          <td><div>asdasd</div><i class="fa fa-info-circle" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                          <td><div>asdasd</div></td>
+                        <tr ng-repeat="perm in pag.permisos">
+                          <td><div>{{perm.permiso_detalles}}</div><i class="fa fa-info-circle" aria-hidden="true"></i></td>
                         </tr>
                     	</tbody>
-                      <tbody>
-                        <tr>
-                          <td rowspan="4">123123</td>
-                        </tr>
-                        <tr>
-                          <td>asdasd</td>
-                        </tr>
-                        <tr>
-                          <td>asdasd</td>
-                        </tr>
-                        <tr>
-                          <td>asdasd</td>
-                        </tr>
-                      </tbody>
                     </table>
                   </td>
                 </tr>
               </tbody>
+              
               <tbody>
                 <tr>
                   <td class="rotate"><div>Productividad</div></td>
