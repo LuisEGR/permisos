@@ -320,7 +320,7 @@ class Permisos
 
     private static $paginas = array();
     public static function loadPaginas(){
-      $q = "SELECT id_pagina, pagina FROM permisos_pagina";
+      $q = "SELECT id_pagina, id_grupo, pagina FROM permisos_pagina";
       DBO::select_db('sistemas');
       self::$paginas = DBO::getArray($q);
     }
@@ -348,6 +348,8 @@ class Permisos
       DBO::select_db('sistemas');
       $q = "SELECT permiso_id, id_pagina, id_grupo, permiso_key, permiso_detalles FROM permisos_cat";
       $permisos = DBO::getArray($q);
+      self::loadGroups();
+      self::loadPaginas();
       foreach ($permisos as $key => $permiso) {
         $permisos[$key]['grupo'] = self::getGrupo($permiso['id_grupo']);
         $permisos[$key]['pagina'] = self::getGrupo($permiso['id_pagina']);
