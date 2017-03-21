@@ -9,7 +9,7 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   $scope.desplazar = function(dir){
     var $users = $("#usuarios-cont-movible");
     var $asignaciones = $("#permisos_asignados");
-    var totalDesplazable = $scope.users.length * 15;
+    var totalDesplazable = $scope.users.ids.length * 15;
     if(dir == 0){//izq
         $scope.intervalDisplacement = $interval(function(){
           if($scope.posicionActual > 20){
