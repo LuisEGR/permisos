@@ -48,7 +48,7 @@
             </div>
             <table class="tabla-fixed-users">
               <tbody>
-                <tr ng-repeat="u in users"><td><div>{{u.total_permisos}}</div></td><td>{{u.usuario_name}}</td></tr>
+                <tr ng-repeat="u in users.users_data"><td><div>{{u.total_permisos}}</div></td><td>{{u.usuario_name}}</td></tr>
                 <tr><td><div>15</div></td><td>10</td></tr>
                 <!-- <tr><td></td><td></td></tr>
                 <tr><td></td><td></td></tr>
@@ -100,7 +100,7 @@
             <table class="tabla-fixed-access">
               <tbody>
                 <tr ng-repeat="i in permisos.ids track by $index">
-                  <td ng-repeat="u in users">p{{i}}</td>
+                  <td ng-repeat="u in users.ids">p{{i}}u{{i}}</td>
                 </tr>
                 <!-- <tr>
                   <td class="has"></td>
@@ -194,7 +194,7 @@
           <div id="permisos_total">
             <table class="tabla-fixed-totals">
               <tbody>
-                <tr id="total_P{{t}}" ng-repeat="t in permisos.ids"><td>total{{t}}</td></tr>              
+                <tr id="total_P{{t}}" ng-repeat="t in permisos.ids"><td>total{{t}}</td></tr>
               </tbody>
             </table>
           </div>
