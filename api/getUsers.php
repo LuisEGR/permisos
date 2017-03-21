@@ -3,5 +3,5 @@
   include_once $_SERVER['DOCUMENT_ROOT']."/sistema/api/v1/base.api.php";
 
   Response::$data->result = Permisos::getAccesos();
-  Response::showDataResult();
+  Response::showResult();
 ?>
