@@ -194,12 +194,7 @@
           <div id="permisos_total">
             <table class="tabla-fixed-totals">
               <tbody>
-                <tr id="totalp1"><td></td></tr>
-                <tr id="totalp2"><td></td></tr>
-                <tr id="totalp3"><td></td></tr>
-                <tr id="totalp4"><td></td></tr>
-                <tr id="totalp5"><td></td></tr>
-                <tr id="totalp6"><td></td></tr>
+                <tr id="total_P{{t}}" ng-repeat="t in permisos.ids"><td>total{{t}}</td></tr>              
               </tbody>
             </table>
           </div>
