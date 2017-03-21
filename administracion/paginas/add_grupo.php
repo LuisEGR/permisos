@@ -1,5 +1,5 @@
 <?php
-include '../../conf.php'
+include '../../../conf.php'
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app='addPuestoApp'>
@@ -34,7 +34,7 @@ include '../../conf.php'
     <![endif]-->
 
 	<script type="text/javascript" src="<?php echo $url_server; ?>/lib/angular-1.5.8/angular.min.js"></script>
-	<script type="text/javascript" src="../../js/add_permiso.js"></script>
+	<script type="text/javascript" src="../../../js/add_grupo.js"></script>
 
   </head>
 
@@ -45,7 +45,7 @@ include '../../conf.php'
 
 
 		<div >
-			<?php include_once "../views/permisos/add.php"; ?>
+			<?php include_once "../../views/grupos/add.php"; ?>
 
 		</div>
 

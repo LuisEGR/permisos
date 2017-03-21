@@ -1,5 +1,7 @@
 <?php
 include "../classes/Permiso.class.php";
+include "../classes/Grupo.class.php";
+include "../classes/Pagina.class.php";
  
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body);
@@ -83,6 +85,62 @@ $_POST = array_merge( $_POST, $a);
            $respuesta['estado'] = 'correcto';  
            $respuesta['msg'] = 'usuario creado correctamente';  
            $respuesta['data'] = $data;
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
+
+    private function addGrupo() {  
+		$this->checkMethod( "POST" );
+		
+		$data = $this->datosPeticion;
+		
+		$grupo = new Grupo;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	   $grupo->add( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'usuario creado correctamente';  
+           //$respuesta['data'] = $data;
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
+
+    private function addPagina() {  
+		$this->checkMethod( "POST" );
+		
+		$data = $this->datosPeticion;
+		
+		$pagina = new Pagina;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	   $pagina->add( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'usuario creado correctamente';  
+           //$respuesta['data'] = $data;
            /*$respuesta['usuario']['nombre'] = $nombre;  
            $respuesta['usuario']['email'] = $email;  */
            $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  

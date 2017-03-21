@@ -47,7 +47,7 @@ include '../conf.php'
 		
 		
 		<div>
-			<?php include_once '../views/permisos/permisos.php'; ?>
+			<?php include_once 'views/permisos/permisos.php'; ?>
 		</div>
         		
 
