@@ -1,2 +1,2 @@
 <?php
-include_once "../paginas/permisos.php";
+include_once "paginas/permisos.php";

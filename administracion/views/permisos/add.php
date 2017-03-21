@@ -48,7 +48,7 @@
 	</div>
 
 
-	<button type="button" class="btn btn-default" onclick="location.href='permisos.php'"  >Regresar</button>
+	<button type="button" class="btn btn-default" onclick="location.href='../'"  >Regresar</button>
 	<button type="submit" class="btn btn-default" ng-click='submitForm(savePermiso.$valid); ' id='btnSubmit' >Guardar</button>
 
   </form>
