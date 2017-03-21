@@ -13,8 +13,7 @@ permisos.service("APIPermisos", [ '$q','$http',function($q, $http){
   this.getAccesos = function(){
     return $q(function(resolve, reject){
         $http.get(self.API_URL + "/getAccess.php").then(function(res){
-          console.log(res);
-          resolve(res.result);
+          resolve(res.data);
         });
     });
   }
