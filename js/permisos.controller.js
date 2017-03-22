@@ -102,4 +102,11 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
     return accesosGlobal[user].indexOf(permiso) !== -1;
   }
 
+
+
+  $scope.$watch('filtroUsuarios', function(o,n){
+    console.log("o: ", o, "  n:", n);
+    
+  });
+
 }]);

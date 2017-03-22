@@ -30,6 +30,7 @@
   <body ng-app="permisos" ng-controller="permisosController as ctrl" ng-mouseup="detenerDesplazamiento()">
     <div class="master-container">
       <div class="usuarios-cont">
+        <input type="text" ng-model="filtroUsuarios" placeholder="Buscar por usuario..." ng-model-options="{'debounce': 200}">
         <i class="fa fa-caret-left flecha" aria-hidden="true" id="desplazador_usuarios_izquierda" ng-mousedown="desplazar(0)" ></i>
         <i class="fa fa-caret-right flecha" aria-hidden="true" id="desplazador_usuarios_derecha"  ng-mousedown="desplazar(1)"></i>
         <div id="usuarios-tag"> Usuario </div>
