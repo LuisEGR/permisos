@@ -78,7 +78,7 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
     angular.forEach(accesos, function(a){
       var uid = parseInt(a.split(',')[0]);
       var pid = parseInt(a.split(',')[1]);
-      if(angular.isUndefined($scope.accesos[ uid )) $scope.accesos[ uid ] = [];
+      if(angular.isUndefined($scope.accesos[uid] )) $scope.accesos[ uid ] = [];
       $scope.accesos[uid].push( pid );
     });
     console.log("accesos?: ", $scope.accesos);
