@@ -100,7 +100,7 @@
             <table class="tabla-fixed-access">
               <tbody>
                 <tr ng-repeat="i in permisos.ids track by $index" avisar-al-terminar>
-                  <td ng-repeat="u in users.ids" title="p{{i}}u{{u}}" avisar-al-terminar></td>
+                  <td ng-class="{'has': tieneAcceso(u, i)}" ng-repeat="u in users.ids" title="p{{i}}u{{u}}" avisar-al-terminar></td>
                 </tr>
                 <!-- <tr>
                   <td class="has"></td>
