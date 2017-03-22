@@ -1,2 +1,2 @@
 <?php
-include_once "../paginas/add_permiso.php";
+include_once "../paginas/grupos.php";
