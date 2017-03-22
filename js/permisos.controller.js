@@ -49,8 +49,9 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   });
 
   $(document).on('mouseover', ".indicador-acceso", function(){
-    $("#" + $(this).data('pid') ).css({'background': '#ffeb3b'});
-    $("#" + $(this).data('uid') ).css({'background': '#ffeb3b'});
+    console.log($(this).data("pid"));
+    $("#" + $(this).data("pid") ).css({'background': '#ffeb3b'});
+    $("#" + $(this).data("uid") ).css({'background': '#ffeb3b'});
   });
 
   $(document).on('mouseleave', ".indicador-acceso", function(){
