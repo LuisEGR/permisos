@@ -179,6 +179,35 @@ $_POST = array_merge( $_POST, $a);
      }  
    }
    
+    private function updateGrupo() {  
+		$this->checkMethod( "POST" );
+		
+		$data = $this->datosPeticion;
+		
+		$grupo = new Grupo;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	   $grupo->updateGrupo( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'update creado correctamente';  
+		   $respuesta['error'] = 'error';  
+           //$respuesta['data'] = $data;
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
+   
    private function updateKeyPermiso() {  
 		$this->checkMethod( "POST" );
 		
@@ -350,6 +379,34 @@ $_POST = array_merge( $_POST, $a);
      }  
    }
 
+   private function getCatGrupos(  ) {
+		$this->checkMethod( "GET" );
+		
+		$grupo = new Grupo;
+		
+		$data = $this->datosPeticion;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	   $grupos = $grupo->listCatGrupos( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'usuario creado correctamente';  
+           $respuesta['miembros'] = $grupos;
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
+   
     private function getDataAddPermiso() {
 		$this->checkMethod( "GET" );
 		
