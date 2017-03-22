@@ -49,14 +49,13 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   });
 
   $(document).on('mouseover', ".indicador-acceso", function(){
-    console.log($(this).data("pid"));
-    $("#" + $(this).data("pid") ).css({'background': '#ffeb3b'});
-    $("#" + $(this).data("uid") ).css({'background': '#ffeb3b'});
+    $("#permiso" + $(this).data("pid") ).css({'background': '#ffeb3b'});
+    $("#user" + $(this).data("uid") ).css({'background': '#ffeb3b'});
   });
 
   $(document).on('mouseleave', ".indicador-acceso", function(){
-    $("#" + $(this).data('pid') ).css({'background': ''});
-    $("#" + $(this).data('uid') ).css({'background': ''});
+    $("#permiso" + $(this).data('pid') ).css({'background': ''});
+    $("#user" + $(this).data('uid') ).css({'background': ''});
   });
 
 
