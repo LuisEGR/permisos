@@ -76,8 +76,10 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   APIPermisos.getAccesos().then(function(d){
     var accesos = d.split("|");
     angular.forEach(accesos, function(a){
-      if(angular.isUndefined($scope.accesos[ parseInt(a.split(',')[0])] )) $scope.accesos[ parseInt(a.split(',')[0]) ] = [];
-      $scope.accesos[a.split(',')[0]].push( parseInt(a.split(',')[1]) );
+      var uid = parseInt(a.split(',')[0]);
+      var pid = parseInt(a.split(',')[1]);
+      if(angular.isUndefined($scope.accesos[ uid )) $scope.accesos[ uid ] = [];
+      $scope.accesos[uid].push( pid );
     });
     console.log("accesos?: ", $scope.accesos);
   });
