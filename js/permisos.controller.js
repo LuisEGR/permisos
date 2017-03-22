@@ -69,17 +69,11 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
 
 
   $scope.users = [];
-  APIPermisos.getUsers().then(function(d){
-    console.log("Users?: ", d);
-    $scope.users = d;
-  });
+
 
   $scope.permisos = [];
   $scope.perids = [];
-  APIPermisos.getPermisos().then(function(d){
-    console.log("Permisos: ", d);
-    $scope.permisos = d;
-  })
+
 
   var accesosGlobal = [];
   APIPermisos.getAccesos().then(function(d){
@@ -91,6 +85,16 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
       accesosGlobal[uid].push( pid );
     });
     console.log("accesos?: ", accesosGlobal);
+
+    APIPermisos.getPermisos().then(function(d){
+      // console.log("Permisos: ", d);
+      $scope.permisos = d;
+    });
+
+    APIPermisos.getUsers().then(function(d){
+      // console.log("Users?: ", d);
+      $scope.users = d;
+    });
   });
 
 
