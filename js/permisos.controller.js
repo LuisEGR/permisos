@@ -46,7 +46,16 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   $(document).on('mouseleave', "#permisos_asignados td", function(ev){
     $(this).parent().css({'background-color': 'rgba(0,0,0,0)'});
     $("#totalp1").css({'background-color': 'rgba(0,0,0,0.1)'});
+  });
 
+  $(document).on('mouseover', ".indicador-acceso", function(){
+    $("#" + $(this).data('pid') ).css({'background', '#ffeb3b'});
+    $("#" + $(this).data('uid') ).css({'background', '#ffeb3b'});
+  });
+  
+  $(document).on('mouseleave', ".indicador-acceso", function(){
+    $("#" + $(this).data('pid') ).css({'background', ''});
+    $("#" + $(this).data('uid') ).css({'background', ''});
   });
 
 

@@ -48,15 +48,9 @@
             </div>
             <table class="tabla-fixed-users">
               <tbody>
-                <tr ng-repeat="u in users.users_data"><td><div>{{u.total_permisos}}</div></td><td>{{u.usuario_name}}</td></tr>
-                <tr><td><div>15</div></td><td>10</td></tr>
-                <!-- <tr><td></td><td></td></tr>
-                <tr><td></td><td></td></tr>
-                <tr><td></td><td></td></tr>
-                <tr><td></td><td></td></tr>
-                <tr><td></td><td></td></tr>
-                <tr><td></td><td></td></tr>
-                <tr><td></td><td></td></tr> -->
+                <tr ng-repeat="u in users.users_data">
+                  <td><div>{{u.total_permisos}}</div></td><td id="user{{u.user_id}}">{{u.usuario_name}}</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -85,7 +79,7 @@
                     		  <td rowspan="{{pag.permisos.length + 1}}">{{pag.pagina}}</td>
                     		</tr>
                         <tr ng-repeat="perm in pag.permisos">
-                          <td title="{{perm.permiso_detalles}}"><div>{{perm.permiso_detalles | limitTo: 15}}</div><i class="fa fa-info-circle" aria-hidden="true"></i></td>
+                          <td title="{{perm.permiso_id}} - {{perm.permiso_detalles}}" id="permiso{{perm.permiso_id}}"><div>{{perm.permiso_detalles | limitTo: 15}}</div><i class="fa fa-info-circle" aria-hidden="true"></i></td>
                         </tr>
                     	</tbody>
                     </table>
@@ -99,93 +93,16 @@
           <div id="permisos_asignados">
             <table class="tabla-fixed-access">
               <tbody>
-                <tr ng-repeat="i in permisos.ids track by $index" avisar-al-terminar>
-                  <td ng-class="{'has': tieneAcceso(u, i)}" ng-repeat="u in users.ids" title="p{{i}}u{{u}}" avisar-al-terminar></td>
+                <tr ng-repeat="i in permisos.ids track by $index">
+                  <td
+                  ng-class="{'has': tieneAcceso(u, i)}"
+                  ng-repeat="u in users.ids"
+                  title="p{{i}}u{{u}}"
+                  avisar-al-terminar
+                  data-uid="{{u}}"
+                  data-pid="{{p}}"
+                  class="indicador-acceso"></td>
                 </tr>
-                <!-- <tr>
-                  <td class="has"></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td class="has"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td class="has"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td class="has"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td class="has"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td class="has"></td>
-                </tr> -->
               </tbody>
             </table>
           </div>
