@@ -82,8 +82,8 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
     console.log("accesos?: ", $scope.accesos);
   });
 
-  $scope.tieneAcceso(user, permiso){
-    return
+  $scope.tieneAcceso = function(user, permiso){
+    return;
   }
 
 }]);
