@@ -49,7 +49,7 @@
             </div>
             <table class="tabla-fixed-users">
               <tbody>
-                <tr ng-repeat="u in users.users_data">
+                <tr ng-repeat="u in usuariosFiltrados.users_data">
                   <td><div>{{u.total_permisos}}</div></td><td id="user{{u.user_id}}">{{u.usuario_name}}</td>
                 </tr>
               </tbody>
@@ -97,7 +97,7 @@
                 <tr ng-repeat="i in permisos.ids track by $index">
                   <td
                   ng-class="{'has': tieneAcceso(u, i)}"
-                  ng-repeat="u in users.ids"
+                  ng-repeat="u in usuariosFiltrados.ids"
                   title="p{{i}}u{{u}}"
                   avisar-al-terminar
                   data-uid="{{u}}"

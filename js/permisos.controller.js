@@ -103,10 +103,12 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   }
 
 
-
-  $scope.$watch('filtroUsuarios', function(o,n){
-    console.log("o: ", o, "  n:", n);
-    
+  $scope.usuariosFiltrados = [];
+  angular.copy($scope.users, $scope.usuariosFiltrados);
+  $scope.$watch('filtroUsuarios', function(n,o){
+    if(o != n){
+      // $scope.usuariosFiltrados = $(filter)
+    }
   });
 
 }]);
