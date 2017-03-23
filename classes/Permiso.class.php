@@ -54,8 +54,10 @@ public function listGroups(){
   return DBO::getArray($sql);
 }
 
-public function listPags(){
-  $sql = "SELECT * FROM permisos_pagina";
+public function listPags( $data ){
+  $id_group = isset($data['id_group']) ? $data['id_group'] : '';
+
+  $sql = "SELECT * FROM permisos_pagina WHERE id_grupo = '".$id_group."';";
   DBO::select_db($this->db);
   return DBO::getArray($sql);
 }

@@ -5,20 +5,34 @@ app.controller('AddPuestoCntroller', function($scope, $http){
 	$scope.catPags = [];
 	
 	
-	/*$http({
-      method: 'GET',
-      url: '../../api/index.php?url=getDataAddPermiso'
-   }).then(function (response){
-		console.log(response.data);
-		$scope.catGrupos = response.data.catGrupos;
-		$scope.catPags = response.data.catPags;		
-		
-		console.log($scope.catGrupos);
-		//console.log($scope.catClaves);
-		
-   },function (error){
+	function getPagesGroup( group ){
+		$http({
+		  method: 'GET',
+		  url: '../../../api/index.php?url=getPagesGroup&id_group='+group
+	   }).then(function (response){
+			$scope.catPags = response.data.catPags;			
+			
+	   },function (error){
 
-   });*/
+	   });
+	}
+	
+	$scope.getGrupos = function(){
+		$http({
+		  method: 'GET',
+		  url: '../../../api/index.php?url=getDataAddPermiso'
+	   }).then(function (response){
+			console.log(response.data);
+			$scope.catGrupos = response.data.catGrupos;
+			$scope.catPags = response.data.catPags;		
+			
+			console.log($scope.catGrupos);
+			//console.log($scope.catClaves);
+			
+	   },function (error){
+
+	   });
+   }
      
 	
    $scope.submitForm = function( formValid ){

@@ -407,6 +407,34 @@ $_POST = array_merge( $_POST, $a);
      }  
    }
    
+    private function getPagesGroup() {
+		$this->checkMethod( "GET" );
+		
+		$permiso = new Permiso;
+		
+		$data = $this->datosPeticion;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	   $catPags = $permiso->listPags( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'paginas cargadas correctamente';
+		   $respuesta['catPags'] = $catPags;		   
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }   
+   
     private function getDataAddPermiso() {
 		$this->checkMethod( "GET" );
 		
@@ -420,7 +448,7 @@ $_POST = array_merge( $_POST, $a);
        //$email = $this->datosPeticion['email'];  
        
 	   $catGrupos = $permiso->listGroups();
-	   $catPags = $permiso->listPags();
+	   $catPags = $permiso->listPags( $data );
 	   
 	   if ( 1 /*!$this->existeUsuario($email)*/) {  
            //$id = $this->_conn->lastInsertId();  
