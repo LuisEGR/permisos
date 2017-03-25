@@ -3,7 +3,7 @@
 	
 	<div class="form-group">
 	  <label for="id_grupo">Grupo:</label>
-	  <select class="form-control" id="id_grupo" name="id_grupo"  ng-change="update()" ng-model="formData.id_grupo" ng-options="p.id_grupo as p.grupo for p in catGrupos track by p.id_grupo" required="" >
+	  <select class="form-control" id="id_grupo" name="id_grupo"  ng-change="getPagesGroup( formData.id_grupo )" ng-model="formData.id_grupo" ng-options="p.id_grupo as p.grupo for p in catGrupos track by p.id_grupo" required="" >
 		  <option value="" >Selecciona una opci&oacute;n</option>
 	  </select>
 	  	<div ng-show="savePagina.$submitted || savePagina.id_grupo.$touched">
@@ -19,24 +19,19 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default" >
 	<div class="table-responsive">
 		<table class="table table-striped">
 		  <thead>
 			<tr>
 			  <th>ID</th>
-			  <th>Posición</th>
-			  <th>Clave</th>
-			  <th>Nombre</th>
+			  <th>P&aacute;gina</th>
 			</tr>
 		  </thead>
 		  <tbody>
-			<tr>
-			  <td class="ng-binding">32</td>
-			  <td class="ng-binding">Asistente de Biomédica</td>
-			  <td class="ng-binding">NOC-BM</td>
-			  <td class="ng-binding">Leonel  González </td>
-			  
+			<tr ng-repeat='c in catPags'>
+			  <td class="ng-binding">{{c.id_pagina}}</td>
+			  <td class="ng-binding">{{c.pagina}}</td>			  
 			</tr>
 
 		  </tbody>
@@ -45,6 +40,6 @@
 </div>
 	
 	<button type="button" style='display:none' class="btn btn-default" onclick=""  >Cancelar</button>
-	<button type="submit" class="btn btn-default" ng-click='submitForm(savePagina.$valid); ' id='btnSubmit' >Guardar</button>
+	<button type="submit" class="btn btn-default" ng-click='submitAddPagina(savePagina.$valid); ' id='btnSubmitPagina' >Guardar</button>
 
   </form>

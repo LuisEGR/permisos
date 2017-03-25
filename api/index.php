@@ -419,13 +419,41 @@ $_POST = array_merge( $_POST, $a);
        //$pwd = $this->datosPeticion['pwd'];  
        //$email = $this->datosPeticion['email'];  
        
-	   $catPags = $permiso->listPags( $data );
+	   $catPags = $permiso->listPagsGroup( $data );
 	   
 	   if ( 1 /*!$this->existeUsuario($email)*/) {  
            //$id = $this->_conn->lastInsertId();  
            $respuesta['estado'] = 'correcto';  
            $respuesta['msg'] = 'paginas cargadas correctamente';
 		   $respuesta['catPags'] = $catPags;		   
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
+   
+    private function getGroupPage() {
+		$this->checkMethod( "GET" );
+		
+		$permiso = new Permiso;
+		
+		$data = $this->datosPeticion;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	   $grupoPage = $permiso->getGroupPage( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'paginas cargadas correctamente';
+		   $respuesta['grupoPage'] = $grupoPage;
            /*$respuesta['usuario']['nombre'] = $nombre;  
            $respuesta['usuario']['email'] = $email;  */
            $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
