@@ -110,13 +110,13 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
     if(o != n){
       var theLookingIDs = [];
       console.log("Filtrando  Usuarios:::", n, o);
-      $scope.usuariosFiltrados.users_data = $scope.usuarios.users_data.filter(function(u){
+      $scope.usuariosFiltrados.users_data = $scope.users.users_data.filter(function(u){
         return n.indexOf(u.usuario_name) !== -1;
       });
       theLookingIDs = $scope.usuariosFiltrados.users_data.map(function(u){
         return u.user_id;
       });
-      $scope.usuariosFiltrados.ids = $scope.usuarios.ids.filter(function(id){
+      $scope.usuariosFiltrados.ids = $scope.users.ids.filter(function(id){
         return theLookingIDs.contiene(id);
       });
 
