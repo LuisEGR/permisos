@@ -98,7 +98,7 @@
                 <tr ng-repeat="i in permisos.ids track by $index">
                   <td
                   ng-class="{'has': tieneAcceso(u, i)}"
-                  ng-repeat="u in usuariosFiltrados.ids | limitTo: 30"
+                  ng-repeat="u in usuariosFiltrados.ids"
                   title="p{{i}}u{{u}}"
                   avisar-al-terminar
                   data-uid="{{u}}"
