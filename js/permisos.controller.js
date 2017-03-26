@@ -3,7 +3,7 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   // $scope.asd  = "asdasdasd";
   $scope.intervalDisplacement;
   $scope.posicionActual = 0;
-
+  $scope.usuariosFiltrados = [];
   $scope.colorsGoups = ["#03a9f4", "#009688", "#00bcd4", "#607d8b", "#3f51b5"];
 
   $scope.desplazar = function(dir){
@@ -94,6 +94,7 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
     APIPermisos.getUsers().then(function(d){
       // console.log("Users?: ", d);
       $scope.users = d;
+      angular.copy($scope.users, $scope.usuariosFiltrados);
     });
   });
 
@@ -103,10 +104,11 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   }
 
 
-  $scope.usuariosFiltrados = [];
-  angular.copy($scope.users, $scope.usuariosFiltrados);
+
+
   $scope.$watch('filtroUsuarios', function(n,o){
     if(o != n){
+      console.log("Filtrando  Usuarios:::", n, o);
       // $scope.usuariosFiltrados = $(filter)
     }
   });
