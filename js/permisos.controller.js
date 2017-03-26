@@ -110,6 +110,10 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
     if(o != n){
       var theLookingIDs = [];
       console.log("Filtrando  Usuarios:::", n, o);
+      if(n !== ""){//borrar todos para optimizar la busqueda
+        $scope.usuariosFiltrados.users_data.length = 0;
+        $scope.usuariosFiltrados.users_data.ids = 0;
+      }
       $scope.usuariosFiltrados.users_data = $scope.users.users_data.filter(function(u){
         return u.usuario_name.toUpperCase().indexOf(n.toUpperCase()) !== -1;
       });
