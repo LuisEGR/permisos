@@ -11,6 +11,8 @@ $c_naranja: rgba(232, 162, 83, 1)
 $c_amarillo: rgba(249, 230, 122, 1)
 $c_negro_border: #37474f
 $c_light_border: rgba(55, 71, 79, 0.12)
+$c_border: rgba(96, 125, 139, 0.53)
+
 
 body, html
   height: 100%
@@ -128,6 +130,7 @@ div
     // height: 1000px
     // background: $c_naranja
     overflow: hidden
+    box-shadow: 0 10px 29px -3px rgba(0, 0, 0, 0.31)
     div
       position: relative
       height: 100%
@@ -151,6 +154,7 @@ div
     right: 5px
     // height: 1000px
     overflow: hidden
+    box-shadow: 0 10px 29px -3px rgba(0, 0, 0, 0.31)
     div
       position: relative
       height: 100%
@@ -167,7 +171,7 @@ div
       height: 20px
       padding: 3px
       // border: 1px solid $c_light_border
-      box-shadow: inset 0 0 1px 0px $c_light_border
+      box-shadow: inset 0 0 1px 0px $c_border
       vertical-align: middle
       i.fa
         color: #607D8B
@@ -212,7 +216,7 @@ div
         min-width: 20px
         padding: 3px
         // border: 1px solid $c_light_border
-        box-shadow: inset 0 0 1px 0px $c_light_border
+        box-shadow: inset 0 0 1px 0px $c_border
         &.has
           background: $c_verde
 
@@ -227,7 +231,7 @@ div
       tr>td
         height: 20px
         padding: 3px
-        box-shadow: inset 0 0 1px 0px $c_light_border
+        box-shadow: inset 0 0 1px 0px $c_border
         // border: 1px solid $c_light_border
 
 .tabla-fixed-users
@@ -251,7 +255,7 @@ div
           height: 20px
           padding: 3px
           // border: 1px solid $c_light_border
-          box-shadow: inset 0 0 1px 0px $c_light_border
+          box-shadow: inset 0 0 1px 0px $c_border
           &:nth-child(1)
             width: 14px
             min-width: 14px

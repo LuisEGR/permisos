@@ -4,7 +4,7 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   $scope.intervalDisplacement;
   $scope.posicionActual = 0;
   $scope.usuariosFiltrados = [];
-  $scope.colorsGoups = ["#03a9f4", "#009688", "#00bcd4", "#607d8b", "#3f51b5"];
+  $scope.colorsGoups = ["#03a9f4", "#009688", "#00bcd4", "#607d8b", "#3f51b5", "#03a9f4", "#009688", "#00bcd4", "#607d8b", "#3f51b5"];
 
   $scope.desplazar = function(dir){
     var $users = $("#usuarios-cont-movible");
@@ -108,8 +108,18 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
 
   $scope.$watch('filtroUsuarios', function(n,o){
     if(o != n){
+      var theLookingIDs = [];
       console.log("Filtrando  Usuarios:::", n, o);
-      // $scope.usuariosFiltrados = $(filter)
+      $scope.usuariosFiltrados.users_data = $scope.usuarios.users_data.filter(function(u)){
+        return n.indexOf(u.usuario_name) !== -1;
+      }
+      theLookingIDs = $scope.usuariosFiltrados.users_data.map(function(u){
+        return u.user_id;
+      });
+      $scope.usuariosFiltrados.ids = $scope.usuarios.ids.filter(function(id)){
+        return theLookingIDs.contiene(id);
+      }
+
     }
   });
 
