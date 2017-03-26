@@ -124,6 +124,8 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
         return theLookingIDs.contiene(id);
       });
 
+      $users.animate({left: "=0",}, 100, function(){ $scope.posicionActual = 0; });
+
     }
   });
 
