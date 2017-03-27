@@ -72,7 +72,7 @@ public function getGroupPage( $data ){
 public function listPags( $data ){
   //$id_group = isset($data['id_group']) ? $data['id_group'] : '';
 
-  $sql = "SELECT * FROM permisos_pagina ";
+  $sql = "SELECT * FROM permisos_pagina pp INNER JOIN permisos_grupo pg ON pg.id_grupo = pp.id_grupo ";
   DBO::select_db($this->db);
   return DBO::getArray($sql);
 }
