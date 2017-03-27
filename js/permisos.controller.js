@@ -108,10 +108,13 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
     if($scope.tieneAcceso(u, p)){
       APIPermisos.deny(u,p).then(function(res){
         console.log(res);
+        $("#p" + p + "u" + u).removeClass('has');
       })
     }else{
       APIPermisos.allow(u,p).then(function(res){
         console.log(res);
+        $("#p" + p + "u" + u).addClass('has');
+
       })
     }
   }
