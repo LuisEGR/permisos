@@ -103,6 +103,19 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
     return accesosGlobal[user].indexOf(permiso) !== -1;
   }
 
+  $scope.toggleAccess = function(u,p){
+    console.log(u, p);
+    if($scope.tieneAcceso(u, p)){
+      APIPermisos.deny(u,p).then(function(res){
+        console.log(res);
+      })
+    }else{
+      APIPermisos.allow(u,p).then(function(res){
+        console.log(res);
+      })
+    }
+  }
+
 
 
 

@@ -27,6 +27,26 @@ permisos.service("APIPermisos", [ '$q','$http',function($q, $http){
     });
   }
 
+  this.allow = function(uid, pid){
+    return $q(function(resolve, reject){
+      $http.post(self.API_URL + "/allow.php", {uid: uid, pid:pid}).then(function(res){
+        resolve(res.data);
+      });
+    });
+  }
+
+  this.deny = function(uid, pid){
+    return $q(function(resolve, reject){
+      $http.post(self.API_URL + "/deny.php", {uid: uid, pid:pid}).then(function(res){
+        resolve(res.data);
+      });
+    });
+  }
+
+
+
+
+
 }]);
 permisos.directive('avisarAlTerminar', function() {
   return function(scope, element, attrs) {
