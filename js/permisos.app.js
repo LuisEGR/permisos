@@ -29,7 +29,7 @@ permisos.service("APIPermisos", [ '$q','$http',function($q, $http){
 
   this.allow = function(uid, pid){
     return $q(function(resolve, reject){
-      $http.post(self.API_URL + "/allow.php", {uid: uid, pid:pid}).then(function(res){
+      $http.get("/sistema/api/v1/permission_allow.php?ids="+uid+"&prs="+pid, ).then(function(res){
         resolve(res.data);
       });
     });
@@ -37,7 +37,7 @@ permisos.service("APIPermisos", [ '$q','$http',function($q, $http){
 
   this.deny = function(uid, pid){
     return $q(function(resolve, reject){
-      $http.post(self.API_URL + "/deny.php", {uid: uid, pid:pid}).then(function(res){
+      $http.get("/sistema/api/v1/permission_deny.php?ids="+uid+"&prs="+pid, ).then(function(res){
         resolve(res.data);
       });
     });
