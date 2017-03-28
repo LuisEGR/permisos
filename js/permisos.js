@@ -8,6 +8,8 @@ app.controller('PuestoCntroller', function($scope, $http){
 
 	$scope.miembros = [];
 	$scope.formData = {};
+	$scope.catGrupos = [];
+	$scope.catPags = [];
 	
 	$scope.pages = 0;
 	$scope.noPage = 0;
@@ -15,6 +17,50 @@ app.controller('PuestoCntroller', function($scope, $http){
 	
 	$scope.groups = [];
 	$scope.pags = [];
+	
+	$scope.getDataAddPermiso = function(){
+	
+			$http({
+			  method: 'GET',
+			  url: '../api/index.php?url=getDataAddPermiso'
+		   }).then(function (response){
+				console.log(response.data);
+				$scope.catGrupos = response.data.catGrupos;
+				$scope.catPags = response.data.catPags;		
+				
+				console.log($scope.catGrupos);
+				//console.log($scope.catClaves);
+				
+		   },function (error){
+
+		   });
+	}
+	
+   $scope.submitAddPermiso = function( formValid ){
+   //console.log('form valid?: ', formValid);
+   
+	if(formValid)
+		{
+			$('#btnSubmitAddPermiso').attr('disabled',true);
+			$http({
+			  method: 'POST',
+			  url: '../api/index.php?url=addPermiso',
+			  data: $scope.formData
+		   }).then(function (response){
+				console.log(response);
+				$scope.formData = {};
+				load( $scope.noPage , $scope.nameSearch );
+				//load(1);
+				
+				$('#modalAddPermiso').modal('toggle');
+				alert('Se guardo exitosamente.');
+				$('#btnSubmitAddPermiso').attr('disabled',false);
+				
+		   },function (error){
+				console.log(error);
+		   });
+		}
+   }
 
   $scope.loadGroups = function() {
     return $scope.groups.length ? null : $http.get('../api/index.php?url=getGroupsPermisos').success(function(data) {
@@ -79,13 +125,28 @@ app.controller('PuestoCntroller', function($scope, $http){
 	$scope.updatePagina = function(row) {
 		console.log('updatePagina');
 		$scope.formData = row;
-		var id = $scope.formData.id_pagina;
-		angular.forEach($scope.pags, function(value, key) {
-			if( id == value.id_pagina )
-				row.pagina = value.pagina;
-			});
+		var id_pagina = $scope.formData.id_pagina;
 		
-		$http.post('../api/index.php?url=updatePaginaPermiso', $scope.formData);
+		$http({
+			  method: 'GET',
+			  url: '../api/index.php?url=getGroupPage&id_pagina='+id_pagina
+		   }).then(function (response){
+				var id = $scope.formData.id_pagina;
+				row.groupName = response.data.grupoPage
+;
+				angular.forEach($scope.pags, function(value, key) {
+					if( id == value.id_pagina )
+						row.pagina = value.pagina;
+					});
+				
+				$http.post('../api/index.php?url=updatePaginaPermiso', $scope.formData);
+				
+		   },function (error){
+
+		   });
+		
+		
+		
 		return 1;
 	};
 	

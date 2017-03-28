@@ -19,3 +19,9 @@
 	<button type="submit" class="btn btn-default" ng-click='submitForm(saveGrupo.$valid); ' id='btnSubmit' >Guardar</button>
 
   </form>
+
+    <a href='' ng-click='getGrupos()' data-toggle="modal" data-target="#modalAddPage" >Agregar p&aacute;gina</a>
+  
+  	<div>
+		<?php include_once '../../views/paginas_sistema/modal_addPage.php'; ?>
+	</div>

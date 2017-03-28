@@ -12,17 +12,24 @@ function __construct() {
    }
 
 public function add( $datos ){
+	$permiso_key = $this->generarKey();
+
 	//$datos['observaciones'] = isset($datos['observaciones']) ? $datos['observaciones'] : 'NULL';
-	$sql = "INSERT INTO permisos_cat (id_grupo, id_pagina, permiso_key, permiso_detalles, descripcion, fecha_agregado)
-			VALUES ('".$datos['id_grupo']."',
+	$sql = "INSERT INTO permisos_cat ( id_pagina, permiso_key, permiso_detalles, descripcion, fecha_agregado)
+			VALUES (
 			'".$datos['id_pagina']."',
-			'".$datos['permiso_key']."',
+			'".$permiso_key."',
 			'".$datos['item']."',
 			'', CURRENT_TIMESTAMP);";
 //echo $sql;
 	DBO::select_db($this->db);
 	$a = DBO::insert($sql);
 }
+
+ private function generarKey()
+  {
+    return md5(microtime().rand());
+  }
 
 public function updateDetalle( $datos ){
 	$sql = "UPDATE permisos_cat SET permiso_detalles = '".html_entity_decode($datos['permiso_detalles'])."' WHERE permiso_id = '".$datos['permiso_id']."';";
@@ -43,7 +50,7 @@ public function updateGroup( $datos ){
 }
 
 public function updatePagina( $datos ){
-	$sql = "UPDATE permisos_cat SET id_pagina = '".$datos['id_pagina']."' WHERE permiso_id = ".$datos['permiso_id'].";";
+	echo $sql = "UPDATE permisos_cat SET id_pagina = '".$datos['id_pagina']."' WHERE permiso_id = ".$datos['permiso_id'].";";
 	DBO::select_db($this->db);
 	$a = DBO::doUpdate($sql);
 }
@@ -54,8 +61,26 @@ public function listGroups(){
   return DBO::getArray($sql);
 }
 
-public function listPags(){
-  $sql = "SELECT * FROM permisos_pagina";
+public function getGroupPage( $data ){
+  $sql = "SELECT * FROM permisos_pagina pp INNER JOIN permisos_grupo pg ON pg.id_grupo = pp.id_grupo WHERE pp.id_pagina = '".$data['id_pagina']."';";
+  DBO::select_db($this->db);
+  $row = DBO::get($sql);
+
+  return $row->grupo;
+}
+
+public function listPags( $data ){
+  //$id_group = isset($data['id_group']) ? $data['id_group'] : '';
+
+  $sql = "SELECT * FROM permisos_pagina pp INNER JOIN permisos_grupo pg ON pg.id_grupo = pp.id_grupo ";
+  DBO::select_db($this->db);
+  return DBO::getArray($sql);
+}
+
+public function listPagsGroup( $data ){
+  $id_group = isset($data['id_group']) ? $data['id_group'] : '';
+
+  $sql = "SELECT * FROM permisos_pagina where id_grupo = '".$id_group."';";
   DBO::select_db($this->db);
   return DBO::getArray($sql);
 }
@@ -68,10 +93,11 @@ if( isset( $datos['n'] ) )
 
    $sql = "SELECT pc.*, pg.id_grupo as 'group', pg.grupo as groupName, pp.pagina as pagina
 FROM permisos_cat pc
-LEFT JOIN permisos_grupo pg ON pg.id_grupo = pc.id_grupo
+
 LEFT JOIN permisos_pagina pp ON pp.id_pagina = pc.id_pagina
+LEFT JOIN permisos_grupo pg ON pg.id_grupo = pp.id_grupo
 WHERE pg.grupo LIKE '%".$n."%' OR permiso_detalles LIKE '%".$n."%'
-ORDER BY id_grupo, fecha_agregado DESC
+ORDER BY fecha_agregado DESC
 ";
   $db = 'sistemas';
   $page = isset( $datos['page'] ) ? $datos['page'] : 1;
