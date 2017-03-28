@@ -84,7 +84,7 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
       if(angular.isUndefined(accesosGlobal[uid] )) accesosGlobal[ uid ] = [];
       accesosGlobal[uid].push( pid );
     });
-    console.log("accesos?: ", accesosGlobal);
+    // console.log("accesos?: ", accesosGlobal);
 
     APIPermisos.getPermisos().then(function(d){
       // console.log("Permisos: ", d);
@@ -100,6 +100,7 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
 
 
   $scope.tieneAcceso = function(user, permiso){
+    if(angular.isUndefined(accesosGlobal[user])) return false;
     return accesosGlobal[user].indexOf(permiso) !== -1;
   }
 

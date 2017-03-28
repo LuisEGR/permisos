@@ -51,7 +51,7 @@ permisos.service("APIPermisos", [ '$q','$http',function($q, $http){
 permisos.directive('avisarAlTerminar', function() {
   return function(scope, element, attrs) {
     if (scope.$last){
-      console.info("all rendered madafaqa!");
+      console.info("all rendered!");
     }
   };
 })
