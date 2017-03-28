@@ -58,7 +58,7 @@
             <table class="tabla-fixed-users">
               <tbody>
                 <tr ng-repeat="u in usuariosFiltrados.users_data">
-                  <td><div>{{u.total_permisos}}</div></td><td id="user{{u.user_id}}">{{u.usuario_name}}</td>
+                  <td><div>{{u.total_permisos}}</div></td><td id="user{{u.user_id}}">{{u.nombre}} {{u.nombre_sec | nombreSec}} {{u.apaterno}}</td>
                 </tr>
               </tbody>
             </table>

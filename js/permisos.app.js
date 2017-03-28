@@ -55,3 +55,14 @@ permisos.directive('avisarAlTerminar', function() {
     }
   };
 })
+
+permisos.filter('nombreSec', function() {
+    return function(input) {
+        if (angular.isUndefined(input) || input === null || input === '' || input === 'NULL' || input === 'N/A') {
+            return '';
+        }else{
+          return input.charAt(0).toUpperCase() + ".";
+        }
+        // return input;
+    }
+});
