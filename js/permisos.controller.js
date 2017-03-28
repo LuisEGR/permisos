@@ -136,7 +136,8 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
         $scope.usuariosFiltrados.users_data.ids = 0;
       }
       $scope.usuariosFiltrados.users_data = $scope.users.users_data.filter(function(u){
-        return u.usuario_name.toUpperCase().indexOf(n.toUpperCase()) !== -1;
+        var toSearchOn = u.nombre + u.nombre_sec + u.apaterno;
+        return toSearchOn.toUpperCase().indexOf(n.toUpperCase()) !== -1;
       });
       theLookingIDs = $scope.usuariosFiltrados.users_data.map(function(u){
         return u.user_id;
