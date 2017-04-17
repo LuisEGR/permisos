@@ -6,6 +6,25 @@ permisos.controller("permisosController",  ['$scope','$rootScope','$http','$inte
   $scope.usuariosFiltrados = [];
   $scope.colorsGoups = ["#03a9f4", "#009688", "#00bcd4", "#607d8b", "#3f51b5", "#03a9f4", "#009688", "#00bcd4", "#607d8b", "#3f51b5"];
 
+
+  $scope.limiteInferior = 0;
+  $scope.limiteSuperior = 20;
+  $scope.desplazar2 = function(dir){
+    var totalUsuarios = $scope.users.ids.length;
+    if(dir == 0){//izq
+      if($scope.limiteInferior >= 20){
+        $scope.limiteInferior -= 20;
+      }
+    }else{//der
+      if($scope.limiteInferior >= 0){
+        $scope.limiteInferior += 20;
+      }
+    }
+    console.log("LimiteInferior = ", $scope.limiteInferior);
+    console.log("LimiteSuperior = ", $scope.limiteSuperior);
+  }
+
+
   $scope.desplazar = function(dir){
     var $users = $("#usuarios-cont-movible");
     var $asignaciones = $("#permisos_asignados");

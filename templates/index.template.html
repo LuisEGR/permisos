@@ -28,19 +28,19 @@
       });
     </script>
   </head>
-  <body ng-app="permisos" ng-controller="permisosController as ctrl" ng-mouseup="detenerDesplazamiento()">
+  <body ng-app="permisos" ng-controller="permisosController as ctrl" >
     <div class="master-container">
       <div class="usuarios-cont">
-        <div>
-         <md-input-container>
+        <div style="width: 370px;">
+         <md-input-container class="md-block">
            <label>Buscar por usuario...</label>
            <!-- <input ng-model="user.title"> -->
            <input type="text" ng-model="filtroUsuarios" ng-model-options="{'debounce': 500}">
          </md-input-container>
        </div>
 
-        <i class="fa fa-caret-left flecha" aria-hidden="true" id="desplazador_usuarios_izquierda" ng-mousedown="desplazar(0)" ></i>
-        <i class="fa fa-caret-right flecha" aria-hidden="true" id="desplazador_usuarios_derecha"  ng-mousedown="desplazar(1)"></i>
+        <i class="fa fa-caret-left flecha" aria-hidden="true" id="desplazador_usuarios_izquierda" ng-click="desplazar2(0)" ></i>
+        <i class="fa fa-caret-right flecha" aria-hidden="true" id="desplazador_usuarios_derecha"  ng-click="desplazar2(1)"></i>
         <div id="usuarios-tag"> Usuario </div>
         <div id="totalp-tag"> Total Permisos </div>
         <div id="usuarios-scroll">
@@ -57,7 +57,7 @@
             </div>
             <table class="tabla-fixed-users">
               <tbody>
-                <tr ng-repeat="u in usuariosFiltrados.users_data">
+                <tr ng-repeat="u in usuariosFiltrados.users_data |  limitTo:limiteSuperior:limiteInferior">
                   <td><div>{{u.total_permisos}}</div></td><td id="user{{u.user_id}}">{{u.nombre}} {{u.nombre_sec | nombreSec}} {{u.apaterno}}</td>
                 </tr>
               </tbody>
@@ -89,7 +89,7 @@
                     		</tr>
                         <tr ng-repeat="perm in pag.permisos">
                           <!-- <td title="{{perm.permiso_id}} - {{perm.permiso_detalles}}" id="permiso{{perm.permiso_id}}"><div>{{perm.permiso_detalles | limitTo: 15}}</div><i class="fa fa-info-circle" aria-hidden="true"></i></td> -->
-                          <td title="{{perm.permiso_id}} - {{perm.permiso_detalles}}" id="permiso{{perm.permiso_id}}"><div>{{perm.permiso_detalles | limitTo: 15}}</div></td>
+                          <td title="{{perm.permiso_id}} - {{perm.permiso_detalles}}" id="permiso{{perm.permiso_id}}"><div>{{perm.permiso_detalles | limitTo: 30}}</div></td>
                         </tr>
                     	</tbody>
                     </table>
@@ -106,11 +106,10 @@
                 <tr ng-repeat="i in permisos.ids track by $index">
                   <td
                   ng-class="{'has': tieneAcceso(u, i)}"
-                  ng-repeat="u in usuariosFiltrados.ids"
+                  ng-repeat="u in usuariosFiltrados.ids  | limitTo:limiteSuperior:limiteInferior"
                   ng-click="toggleAccess(u,i)"
                   id="p{{i}}u{{u}}"
                   title="p{{i}}u{{u}}"
-                  avisar-al-terminar
                   data-uid="{{u}}"
                   data-pid="{{i}}"
                   class="indicador-acceso"></td>
